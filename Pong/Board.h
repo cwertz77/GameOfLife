@@ -13,6 +13,7 @@ private:
 	void check_board(Tile board[][]);
 	int check_surrounding(Tile board[][], int row, int col);
 };
+//edit
 Board::Board()
 {
 	for (int i = 0; i < 100; i++)
