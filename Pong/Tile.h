@@ -1,7 +1,9 @@
 #pragma once
+
+#include <SFML/Graphics.hpp>
 #include "Square.h"
 
-class Tile : public Square
+class Tile : public sf::RectangleShape
 {
 public:
 
