@@ -4,6 +4,7 @@
 
 // state machine constants
 
+// hi
 
 int main()
 {
