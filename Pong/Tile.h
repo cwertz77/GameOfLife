@@ -1,4 +1,6 @@
 #pragma once
+
+#include <SFML/Graphics.hpp>
 #include "Square.h"
 #include <SFML/Graphics.hpp>
 
