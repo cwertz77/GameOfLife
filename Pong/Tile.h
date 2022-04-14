@@ -1,9 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Square.h"
 #include <SFML/Graphics.hpp>
 
+// tile class
 class Tile : public sf::RectangleShape
 {
 public:
@@ -13,12 +13,3 @@ public:
 private:
 	bool fill;
 };
-
-bool Tile::getFill()
-{
-	return fill;
-}
-void Tile::setFill(bool newFill)
-{
-	fill = newFill;
-}
