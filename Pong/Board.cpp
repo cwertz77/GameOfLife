@@ -7,7 +7,8 @@ Board::Board()
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			board[i][j].setFill(false); // sets fill to default color
+			Tile tile_current(sf::Vector2f(5 * i, 5 * j), sf::Vector2f(5, 5), sf::Color::White); // sets all initial squares to 5x5, white
+			board[i][j] = tile_current;
 		}
 	}
 }
