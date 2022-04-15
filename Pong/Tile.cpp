@@ -1,5 +1,7 @@
 #include "Tile.h"
 
+
+
 bool Tile::getFill()
 {
 	return fill;
