@@ -10,6 +10,7 @@ int main()
 	sf::CircleShape shape(100.f);
 	//sf::CircleShape shape(100.f);
 	Board initial_board();
+	Tile pTile();
 
 	//shape.setFillColor(sf::Color::Green);
 
@@ -23,6 +24,14 @@ int main()
 		}
 	}
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		// get position relative to window
+		sf::Vector2i localPosition = sf::Mouse::getPosition(window);
+
+		// fill tile?
+		//pTile.setFill()
+	}
 
 
 
