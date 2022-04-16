@@ -13,7 +13,8 @@ public:
 	// this is going to have the default vector/color in it.
 	Tile(const sf::Vector2f& pos, const sf::Vector2f& size, const sf::Color& color) : sf::RectangleShape(size)
 	{
-		this->setFillColor(color);
+		// starts color at false - changes color in setFill function
+		this->setFill(false);
 		// creates a border for each color
 		this->setOutlineThickness(1);
 		this->setOutlineColor(sf::Color(250, 150, 100));
