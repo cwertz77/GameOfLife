@@ -6,7 +6,7 @@
 class Tile : public sf::RectangleShape
 {
 public:
-	Tile() : sf::RectangleShape(sf::Vector2f(50, 50))
+	Tile() : sf::RectangleShape(sf::Vector2f(10, 10))
 	{
 		fill = false;
 	}
@@ -16,8 +16,9 @@ public:
 		// starts color at false - changes color in setFill function
 		this->setFill(false);
 		// creates a border for each color
-		this->setOutlineThickness(1);
-		this->setOutlineColor(sf::Color(250, 150, 100));
+		this->setOutlineThickness(2);
+		this->setOutlineColor(sf::Color::Black);
+	//	this->setOutlineColor(sf::Color(250, 150, 100));
 		this->setPosition(pos);
 		fill = 0;
 	}
