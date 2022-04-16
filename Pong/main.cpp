@@ -35,16 +35,13 @@ int main()
 
 	//}
 
-<<<<<<< HEAD
 		// fill tile?
 		//pTile.setFill(localPosition)
-	}
-=======
+	//}
 	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	//{
 	//	// get position relative to window
 	//	sf::Vector2i localPosition = sf::Mouse::getPosition(window);
->>>>>>> 216a22c726b7e4e03762e548779bd843ba00722c
 
 	//	// fill tile?
 	//	//pTile.setFill()
@@ -57,6 +54,6 @@ int main()
 	//}
 
 
-
 	return 0;
+
 }
