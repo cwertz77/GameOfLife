@@ -3,12 +3,13 @@
 #include <SFML/Graphics.hpp>
 #pragma once
 #include "Tile.h"
-
-class Board : public sf::RenderWindow
+using std::string;
+class Board
 {
 public:
 	// initializes board - sets all tiles to false
 	Board();	
+	sf::RenderWindow window(sf::VideoMode(int size, int size1), string name);
 	Tile board[50][50];
 private:
 
