@@ -7,7 +7,8 @@ Board::Board()
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			board[i][j].setFill(false); // sets fill to default color
+			Tile tile_current(sf::Vector2f(5 * i, 5 * j), sf::Vector2f(5, 5), sf::Color::White); // sets all initial squares to 5x5, white
+			board[i][j] = tile_current;
 		}
 	}
 }
@@ -19,9 +20,20 @@ void Board::check_board(Tile board[][100])
 		for (int j = 0; j < 100; j++) // loops through entire board
 		{
 			int num_surrounding = check_surrounding(board, i, j);
-			if (num_surrounding == 0 && board[i][j].getFill() == true) // there are no tiles surrounding and the current tile is populated
+			if (num_surrounding <= 1) // there are not enough tiles surrounding and the current tile is populated
 			{
-				newboard[i][j].setFill(false); // the current tile dies on the next board
+				if (board[i][j].getFill() == true)
+				{
+					newboard[i][j].setFill(false); // the current tile dies on the next board
+				}
+			}
+			else if (num_surrounding == 3 && board[i][j].getFill() == false) // there are 3 surrounding; new cell can grow
+			{
+				board[i][j].setFill(true);
+			}
+			else if (num_surrounding >= 4 && board[i][j].getFill() == true) // overpopulation
+			{
+				board[i][j].setFill(false);
 			}
 			else
 			{
@@ -38,8 +50,37 @@ int Board::check_surrounding(Tile board[][100], int row, int col)
 	// adds 1 to num surrounding if they are filled
 	if (board[row - 1][col - 1].getFill() == true)
 	{
-
+		num_surrounding++;
 	}
+	if (board[row - 1][col].getFill() == true)
+	{
+		num_surrounding++;
+	}
+	if (board[row][col - 1].getFill() == true)
+	{
+		num_surrounding++;
+	}
+	if (board[row + 1][col + 1].getFill() == true)
+	{
+		num_surrounding++;
+	}
+	if (board[row][col + 1].getFill() == true)
+	{
+		num_surrounding++;
+	}
+	if (board[row + 1][col].getFill() == true)
+	{
+		num_surrounding++;
+	}
+	if (board[row + 1][col - 1].getFill() == true)
+	{
+		num_surrounding++;
+	}
+	if (board[row - 1][col + 1].getFill() == true)
+	{
+		num_surrounding++;
+	}
+
 	// returns the number of surrounding tiles - is then used to determine underpopulated, populated, or overpopulated
 	return num_surrounding;
 }
