@@ -1,6 +1,7 @@
 
 #include "Board.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 // state machine constants
 
@@ -42,5 +43,6 @@ int main()
 
 
 
+>>>>>>> 554771b06923958354bf1f7704829c08d7686c99
 	return 0;
 }
