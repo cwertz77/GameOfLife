@@ -30,7 +30,7 @@ int main()
 		sf::Vector2i localPosition = sf::Mouse::getPosition(window);
 
 		// fill tile?
-		//pTile.setFill()
+		//pTile.setFill(localPosition)
 	}
 
 
