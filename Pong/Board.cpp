@@ -1,15 +1,30 @@
 #include "Board.h"
+#include <SFML/Graphics.hpp>
 
 // constructor for board
 Board::Board()
 {
+	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
 	for (int i = 0; i < 50; i++)
 	{
-		for (int j = 0; j < 50; j++)
+		for (int j = 0; j < 40; j++)
 		{
-			Tile tile_current(sf::Vector2f(10 * i, 10* j), sf::Vector2f(10, 10), sf::Color::White); // sets all initial squares to 5x5, white
+			Tile tile_current(sf::Vector2f(20 * i, 20* j), sf::Vector2f(20, 20), sf::Color::White); // sets all initial squares to 5x5, white
 			board[i][j] = tile_current;
+			window.draw(board[i][j]);
+
 		}
+	}
+	window.display();
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
 	}
 }
 void Board::check_board(Tile board[][50])
