@@ -1,15 +1,17 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-
 #pragma once
 #include "Tile.h"
+
 class Board
 {
 public:
+	// initializes board - sets all tiles to false
 	Board();
 private:
 	Tile board[100][100];
+<<<<<<< HEAD
 	void check_board(Tile board[][]);
 	int check_surrounding(Tile board[][], int row, int col);
 };
@@ -49,7 +51,11 @@ int Board::check_surrounding(Tile board[][], int row, int col)
 	int num_surrounding = 0;
 	if (board[row - 1][col - 1].getFill() == true)
 	{
+=======
+>>>>>>> f8b91b32f3e008c41c4c75c53c34c5975c1b9ac2
 
-	}
-	return num_surrounding;
-}
+	// checks which cells on a board live or die
+	void check_board(Tile board[][100]);
+	// checks the surrounding area of a single cell
+	int check_surrounding(Tile board[][100], int row, int col);
+};

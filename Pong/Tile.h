@@ -1,21 +1,15 @@
 #pragma once
-#include "Square.h"
 
-class Tile : public Square
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
+
+// tile class
+class Tile : public sf::RectangleShape
 {
 public:
-
+	// getter and setter for fill - should be replaced with the color fillers for square
 	bool getFill();
 	void setFill(bool newFill);
 private:
 	bool fill;
 };
-
-bool Tile::getFill()
-{
-	return fill;
-}
-void Tile::setFill(bool newFill)
-{
-	fill = newFill;
-}
