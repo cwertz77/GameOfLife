@@ -3,22 +3,23 @@
 // constructor for board
 Board::Board()
 {
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 50; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 50; j++)
 		{
-			Tile tile_current(sf::Vector2f(5 * i, 5 * j), sf::Vector2f(5, 5), sf::Color::White); // sets all initial squares to 5x5, white
+			Tile tile_current(sf::Vector2f(10 * i, 10* j), sf::Vector2f(10, 10), sf::Color::White); // sets all initial squares to 5x5, white
 			board[i][j] = tile_current;
 		}
 	}
 }
-void Board::check_board(Tile board[][100])
+void Board::check_board(Tile board[][50])
 {
-	Tile newboard[100][100];
-	for (int i = 0; i < 100; i++)
+	Tile newboard[50][50];
+	for (int i = 0; i < 50; i++)
 	{
-		for (int j = 0; j < 100; j++) // loops through entire board
+		for (int j = 0; j < 50; j++) // loops through entire board
 		{
+			newboard[i][j] = board[i][j]; // copies the old board elements to the new board
 			int num_surrounding = check_surrounding(board, i, j);
 			if (num_surrounding <= 1) // there are not enough tiles surrounding and the current tile is populated
 			{
@@ -29,21 +30,21 @@ void Board::check_board(Tile board[][100])
 			}
 			else if (num_surrounding == 3 && board[i][j].getFill() == false) // there are 3 surrounding; new cell can grow
 			{
-				board[i][j].setFill(true);
+				newboard[i][j].setFill(true);
 			}
 			else if (num_surrounding >= 4 && board[i][j].getFill() == true) // overpopulation
 			{
-				board[i][j].setFill(false);
+				newboard[i][j].setFill(false);
 			}
-			else
-			{
-				newboard[i][j] = board[i][j];
-			}
+			//else
+			//{
+			//	newboard[i][j] = board[i][j];
+			//}
 		}
 	}
 }
 // check surrounding
-int Board::check_surrounding(Tile board[][100], int row, int col)
+int Board::check_surrounding(Tile board[][50], int row, int col)
 {
 	int num_surrounding = 0;
 

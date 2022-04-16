@@ -10,10 +10,10 @@ public:
 	// initializes board - sets all tiles to false
 	Board();
 private:
-	Tile board[100][100];
+	Tile board[50][50];
 
 	// checks which cells on a board live or die
-	void check_board(Tile board[][100]);
+	void check_board(Tile board[][50]);
 	// checks the surrounding area of a single cell
-	int check_surrounding(Tile board[][100], int row, int col);
+	int check_surrounding(Tile board[][50], int row, int col);
 };

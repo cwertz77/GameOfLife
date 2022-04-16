@@ -6,9 +6,9 @@
 class Tile : public sf::RectangleShape
 {
 public:
-	Tile() : sf::RectangleShape(sf::Vector2f(5, 5))
+	Tile() : sf::RectangleShape(sf::Vector2f(50, 50))
 	{
-
+		fill = false;
 	}
 	// this is going to have the default vector/color in it.
 	Tile(const sf::Vector2f& pos, const sf::Vector2f& size, const sf::Color& color) : sf::RectangleShape(size)
