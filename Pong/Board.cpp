@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 
 // constructor for board
-Board::Board()
+Board::Board(sf::RenderWindow &window)
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
+	//sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
 	for (int i = 0; i < 50; i++)
 	{
 		for (int j = 0; j < 40; j++)
@@ -16,16 +16,16 @@ Board::Board()
 		}
 	}
 	window.display();
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
+	//while (window.isOpen())
+	//{
+	//	sf::Event event;
+	//	while (window.pollEvent(event))
+	//	{
+	//		if (event.type == sf::Event::Closed)
+	//			window.close();
+	//	}
 
-	}
+	//}
 }
 void Board::check_board(Tile board[][50])
 {
