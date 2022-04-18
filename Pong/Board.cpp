@@ -27,15 +27,15 @@ Board::Board(sf::RenderWindow &window)
 
 	//}
 }
-void Board::check_board(Tile board[][50])
+void Board::check_board(/*Tile board[][40]*/)
 {
 	Tile newboard[50][50];
 	for (int i = 0; i < 50; i++)
 	{
-		for (int j = 0; j < 50; j++) // loops through entire board
+		for (int j = 0; j < 40; j++) // loops through entire board
 		{
 			newboard[i][j] = board[i][j]; // copies the old board elements to the new board
-			int num_surrounding = check_surrounding(board, i, j);
+			int num_surrounding = check_surrounding(i, j);
 			if (num_surrounding <= 1) // there are not enough tiles surrounding and the current tile is populated
 			{
 				if (board[i][j].getFill() == true)
@@ -59,7 +59,7 @@ void Board::check_board(Tile board[][50])
 	}
 }
 // check surrounding
-int Board::check_surrounding(Tile board[][50], int row, int col)
+int Board::check_surrounding(/*Tile board[][40], */int row, int col)
 {
 	int num_surrounding = 0;
 
@@ -99,4 +99,14 @@ int Board::check_surrounding(Tile board[][50], int row, int col)
 
 	// returns the number of surrounding tiles - is then used to determine underpopulated, populated, or overpopulated
 	return num_surrounding;
+}
+
+// finds click location
+void Board::find_click(sf::RenderWindow& window, int i, int j)
+{
+	sf::Vector2i localPosition = sf::Mouse::getPosition(window);
+	if (localPosition.x >= i * 20 && localPosition.x <= (i * 20 + 20) && localPosition.y >= j * 20 && localPosition.y <= j * 20 + 20)
+	{
+		board[i][j].setFill(1);
+	}
 }

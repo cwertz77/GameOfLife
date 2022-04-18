@@ -32,20 +32,37 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}		
+		while (1) // basically loops until a key is pressed that starts game of life
+		{
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				for (int i = 0; i < 50; i++)
+				{
+					for (int j = 0; j < 40; j++)
+					{
+						initial_board->find_click(window, i, j);
+						//if (localPosition >= (i * 20, j * 20) && localPosition <= (i * 20 + 20))
+						//{
+						//	initial_board[i][j]->setFill(1);
+						//}
+					}
+				}
+				// get position relative to window
 
+
+				// fill tile?
+				//pTile.setFill()
+			}
+		}
 	}
 
-		// fill tile?
+	
+
+	// fill tile?
 		//pTile.setFill(localPosition)
 	//}
-	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	//{
-	//	// get position relative to window
-	//	sf::Vector2i localPosition = sf::Mouse::getPosition(window);
 
-	//	// fill tile?
-	//	//pTile.setFill()
-	//}
+
 
 
 	//	window.clear();
