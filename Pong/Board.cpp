@@ -18,7 +18,7 @@ Board::Board(sf::RenderWindow &window)
 	window.display();
 
 }
-void Board::check_board(/*Tile board[][40]*/)
+void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 {
 	Tile newboard[50][50];
 	for (int i = 0; i < 50; i++)
@@ -46,8 +46,19 @@ void Board::check_board(/*Tile board[][40]*/)
 			//{
 			//	newboard[i][j] = board[i][j];
 			//}
+		
+			
+		}
+	}	
+	for (int i = 0; i < 50; i++)
+	{
+		for (int j = 0; j < 40; j++)
+		{
+			board[i][j] = newboard[i][j];
+			window.draw(board[i][j]);
 		}
 	}
+	window.display();
 }
 // check surrounding
 int Board::check_surrounding(/*Tile board[][40], */int row, int col)
@@ -55,38 +66,42 @@ int Board::check_surrounding(/*Tile board[][40], */int row, int col)
 	int num_surrounding = 0;
 
 	// adds 1 to num surrounding if they are filled
-	if (board[row - 1][col - 1].getFill() == true)
+	if (row >= 1 && col >= 1 && row < 49 && col < 39)
 	{
-		num_surrounding++;
+		if (board[row - 1][col - 1].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row - 1][col].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row][col - 1].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row + 1][col + 1].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row][col + 1].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row + 1][col].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row + 1][col - 1].getFill() == true)
+		{
+			num_surrounding++;
+		}
+		if (board[row - 1][col + 1].getFill() == true)
+		{
+			num_surrounding++;
+		}
 	}
-	if (board[row - 1][col].getFill() == true)
-	{
-		num_surrounding++;
-	}
-	if (board[row][col - 1].getFill() == true)
-	{
-		num_surrounding++;
-	}
-	if (board[row + 1][col + 1].getFill() == true)
-	{
-		num_surrounding++;
-	}
-	if (board[row][col + 1].getFill() == true)
-	{
-		num_surrounding++;
-	}
-	if (board[row + 1][col].getFill() == true)
-	{
-		num_surrounding++;
-	}
-	if (board[row + 1][col - 1].getFill() == true)
-	{
-		num_surrounding++;
-	}
-	if (board[row - 1][col + 1].getFill() == true)
-	{
-		num_surrounding++;
-	}
+
 
 	// returns the number of surrounding tiles - is then used to determine underpopulated, populated, or overpopulated
 	return num_surrounding;

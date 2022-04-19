@@ -4,7 +4,7 @@
 
 bool Tile::getFill()
 {
-	return fill;
+	return this->fill;
 }
 void Tile::setFill(bool newFill)
 {

@@ -39,6 +39,15 @@ int main()
 			{						
 				initial_board->find_click(window);
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			{
+				start = 1;
+			}
+		}
+		while (1)
+		{
+			initial_board->check_board(window);
+			Sleep(1200);
 		}
 	}
 
