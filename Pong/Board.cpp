@@ -16,16 +16,7 @@ Board::Board(sf::RenderWindow &window)
 		}
 	}
 	window.display();
-	//while (window.isOpen())
-	//{
-	//	sf::Event event;
-	//	while (window.pollEvent(event))
-	//	{
-	//		if (event.type == sf::Event::Closed)
-	//			window.close();
-	//	}
 
-	//}
 }
 void Board::check_board(/*Tile board[][40]*/)
 {
@@ -102,11 +93,21 @@ int Board::check_surrounding(/*Tile board[][40], */int row, int col)
 }
 
 // finds click location
-void Board::find_click(sf::RenderWindow& window, int i, int j)
+void Board::find_click(sf::RenderWindow& window)
 {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(window);
-	if (localPosition.x >= i * 20 && localPosition.x <= (i * 20 + 20) && localPosition.y >= j * 20 && localPosition.y <= j * 20 + 20)
+	for (int i = 0; i < 50; i++)
 	{
-		board[i][j].setFill(1);
+		for (int j = 0; j < 40; j++)
+		{
+			if (localPosition.x >= i * 20 && localPosition.x <= (i * 20 + 20) && localPosition.y >= j * 20 && localPosition.y <= j * 20 + 20)
+			{
+				board[i][j].setFill(1);
+				
+			}
+			window.draw(board[i][j]);
+		}
 	}
+	window.display();
+
 }

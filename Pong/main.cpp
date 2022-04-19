@@ -35,18 +35,19 @@ int main()
 		while (1) // basically loops until a key is pressed that starts game of life
 		{
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			{
-				for (int i = 0; i < 50; i++)
-				{
-					for (int j = 0; j < 40; j++)
-					{
-						initial_board->find_click(window, i, j);
-						//if (localPosition >= (i * 20, j * 20) && localPosition <= (i * 20 + 20))
-						//{
-						//	initial_board[i][j]->setFill(1);
-						//}
-					}
-				}
+			{						
+				initial_board->find_click(window);
+
+				//for (int i = 0; i < 50; i++)
+				//{
+				//	for (int j = 0; j < 40; j++)
+				//	{
+				//		//if (localPosition >= (i * 20, j * 20) && localPosition <= (i * 20 + 20))
+				//		//{
+				//		//	initial_board[i][j]->setFill(1);
+				//		//}
+				//	}
+				//}
 				// get position relative to window
 
 

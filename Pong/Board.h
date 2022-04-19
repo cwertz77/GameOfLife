@@ -11,7 +11,7 @@ public:
 	Board(sf::RenderWindow &window);
 	sf::RenderWindow window(sf::VideoMode(int size, int size1), string name);
 	Tile board[50][40];
-	void find_click(sf::RenderWindow& window, int i, int j);
+	void find_click(sf::RenderWindow& window);
 private:
 
 
