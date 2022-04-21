@@ -41,7 +41,7 @@ int main()
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
-				start = 1;
+				start = 1;//implement button
 			}
 		}
 		while (1)
