@@ -35,14 +35,31 @@ int main()
 
 	while (numPlayer == 0)
 	{
-		cout << "Welcome to Conways Game of Life" << endl;
-		cout << "Menu: " << endl << "1. Rules" << endl << "2. Play" << endl;
+		cout << "----------------------WELCOME TO CONWAYS GAME OF LIFE------------------------" << endl;
+		cout << "Menu: " << endl << "1. Rules/How to Play" << endl << "2. Play" << endl;
 		cout << "Enter a Menu option: ";
 		cin >> option;
 		if (option == 1)
 		{
-			//print game rules
-			// when majority of tiles are one color the tile that comes alive becomes that color
+			cout<< endl << "-------------------HOW TO PLAY------------------" << endl;
+			cout << "----------1 Player: -------------" << endl;
+			cout << "1. Enter configureation of tiles" << endl << "2. Press play and enjoy !" << endl;
+			cout << "----------2 Players: -------------" << endl;
+			cout << "1. Player 1 enter configureation of tiles" << endl << "2. Press 'N' key for next player" << endl << "3. Player 2 to enter configuration of tiles" << endl << "4. Press play and enjoy !" << endl;
+			cout << endl << "--------------------RULES--------------------" << endl;
+			cout << "For a space that is filled/populated: " << endl;
+			cout << "- Each cell with one or no neighbors dies, as if by solitude." << endl;
+			cout << "- Each cell with four or more neighbors dies, as if by overpopulation." << endl;
+			cout << "- Each cell with two or three neighbors survives." << endl << endl;
+			cout << "For a space that is empty/unpopulated: " << endl;
+			cout << "- Each cell with three neighbors becomes filled/populated." << endl;
+			cout << "	* For 2 players when a cell becomes populated it takes on the color of the morjority of the neighbors" << endl << endl;
+
+			cout << "Game ends when game board repeats the same patters indefinetly or all cells die" << endl;
+			cout << "	* For 2 players whoever ends up with the most amount of tiles on the board wins !" << endl;
+
+			system("pause");
+			system("cls");
 		}
 		else
 		{
@@ -97,7 +114,7 @@ int main()
 		while (1)
 		{
 			initial_board->check_board(window);
-			Sleep(500);
+			Sleep(800);
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 			{
