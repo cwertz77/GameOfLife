@@ -9,12 +9,29 @@ bool Tile::getFill()
 void Tile::setFill(bool newFill)
 {
 	fill = newFill;
-	if (newFill == true) // the fill is now yellow, or populated
+	//if (player == 1) // two players
 	{
-		this->setFillColor(sf::Color::Yellow);
+		if (newFill == true) // the fill is now yellow, or populated
+		{
+			this->setFillColor(sf::Color::Yellow);
+		}
+		else if (newFill == false) // the fill should now be white, or unpopulated
+		{
+			this->setFillColor(sf::Color::White);
+		}
+
+		//player == 2;
 	}
-	else if (newFill == false) // the fill should now be white, or unpopulated
-	{
-		this->setFillColor(sf::Color::White);
-	}
+	//else
+	//{
+	//	if (newFill == true) // the fill is now Blue, or populated
+	//	{
+	//		this->setFillColor(sf::Color::Blue);
+	//	}
+	//	else if (newFill == false) // the fill should now be white, or unpopulated
+	//	{
+	//		this->setFillColor(sf::Color::White);
+	//	}
+	//}
+	
 }

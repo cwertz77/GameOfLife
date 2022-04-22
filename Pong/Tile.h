@@ -25,6 +25,7 @@ public:
 	// getter and setter for fill - should be replaced with the color fillers for square
 	bool getFill();
 	void setFill(bool newFill);
-private:
+
+protected:
 	bool fill;
 };
