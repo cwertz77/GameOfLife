@@ -158,6 +158,7 @@ void Board::find_click(sf::RenderWindow& window, int player)
 				board[i][j].setPlayer(player);
 				board[i][j].setFill(1);
 				
+				//insert a variable that checks if the tile is clicked or not
 			}
 			window.draw(board[i][j]);
 		}

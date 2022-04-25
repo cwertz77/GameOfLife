@@ -1,36 +1,49 @@
 #include "buttons.h"
-Button::Button(sf::Sprite* actual_image, sf::Sprite* clicked, sf::Vector2f location)
+Button::Button()
 {
-    this->actual_image = *actual_image; 
-    this->clicked = *clicked;
-    this->n_texture = &this->actual_image;
-    this->actual_image.setPosition(location);
-    this->clicked.setPosition(location);
+}
+Button::Button(sf::Texture* actual_image, sf::Texture *clicked, sf::Vector2f location)
+{
+    this->sprite = sf::RectangleShape(sf::Vector2f(300, 100));
+    this->actual_image = actual_image; 
+    this->clicked = clicked;
+    this->n_texture = this->actual_image;
+    this->sprite.setTexture(actual_image);
+    this->sprite.setPosition(location);
+    //this->actual_image.setPosition(location);
+    //this->clicked.setPosition(location);
     //*actual_image.SetPosition(*actual_image.getPosition());
     //*clicked.SetPosition(*clicked.getPosition());
 }
-void Button::checkClick(sf::Vector2f Mouse)
+bool Button::checkClick(sf::RenderWindow& window)
 {
-    bool click = true;
-    if (click)
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        //Emma said there are built in functions
-        if (mouse.x > n_texture && mouse.x < n_texure && localPosition.y >n_texture && localPosition.y <= j * 20 + 20)
+        sf::Vector2i position = sf::Mouse::getPosition(window);
+        if (position.x > sprite.getPosition().x && position.x < sprite.getPosition().x + sprite.getSize().x && position.y > sprite.getPosition().y && position.y < sprite.getPosition().y + sprite.getSize().y)
+            //Emma said there are built in functions
         {
-            n_texture = &click;
+            sprite.setTexture(clicked);
+                //n_texture = &clicked;
+            return true;
+        }
+        else
+        {
+            n_texture = actual_image;
+            return false;
         }
     }
-    else
-    {
-        return;
-    }
-    n_texture = &actual_image;
+    
 
 }
 
 void Button::set_text(std::string words)
 {
-   this->set_text(words);
+   //this->set_text(words);
+   this->text.setString(words);
+   this->set_SizeText(6);
+
+   //Sprite button1 std::cout << "start" < , endl;
 }
  void Button::set_positionText(sf::Vector2f location)
 {
@@ -42,30 +55,38 @@ void Button::set_text(std::string words)
    this->set_positionText(vect);
 }
 
-void Button::set_SizeText(int size)
-{
-   size = 6;
-   this->set_SizeText(6);
-}
+//void Button::set_SizeText(int size)
+//{
+//   size = 6;
+//   this->set_SizeText(6);
+//}
 //bool Button::getVar()
 //{
 //    return current;
 //}
 
-sf::Sprite* Button::get_Sprite()
+sf::Texture* Button::get_Sprite()
 {
     return n_texture;
 }
 
-sf::String* Button::get_Text()
-{
-   return &text;
-}
+//sf::Text* Button::get_Text()
+//{
+//   return &text;
+//}
 
-void Button::set_text(std::string words)
+void Button::draw(sf::RenderWindow& window)
 {
-   this->set_text(words);
+    window.draw(sprite);
+    window.draw(text);
 }
-
+//void Button::set_text(std::string words)
+//{
+//   this->set_text(words);
+//}
+//void Button::text(sf::RenderWindow& window)
+//{
+//    window.draw(text);
+//}
 
 

@@ -1,4 +1,3 @@
-
 #include "Board.h"
 #include "buttons.h"
 #include <SFML/Graphics.hpp>
@@ -9,15 +8,36 @@ using std::endl;
 using std::cin;
 
 // state machine constants
-
+// SFML-2.5.1-windows-vc14-32-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Conways Game of Life!");
+	sf::RenderWindow window(sf::VideoMode(1000, 1500), "Conways Game of Life!");
 	Board* initial_board = new Board(window);
-	Button Start = new Button();
-	Button Stop = new Button();
-	Button Pause = new Button();
 
+
+	sf::Texture texture;
+	sf::Texture texture1;
+	/*texture.loadFromFile("b1.png");
+	texture1.loadFromFile("b2.png");*/
+	if (!texture.loadFromFile("b1.png"))
+	{
+		return -1;
+	}
+	if (!texture1.loadFromFile("b3.png"))
+	{
+		return -1;
+	}
+	
+	sf::Sprite button1;
+	button1.setPosition(sf::Vector2f(500, 900));
+	button1.setTexture(texture);
+	button1.setTexture(texture1);
+
+	button1.setScale(.2, .2);
+
+    Button Start = Button(&texture, &texture1, sf::Vector2f(500, 900));
+	Button Pause = Button(&texture, &texture1, sf::Vector2f(500, 1100));
+	Button Stop = Button(&texture, &texture1, sf::Vector2f(500, 1300));
 //		for (int i = 0; i < 50; i++)
 //		{
 //			for (int j = 0; j < 40; j++)
@@ -80,6 +100,16 @@ int main()
 
 	while (window.isOpen())
 	{
+		Start.draw(window);
+		//
+		Pause.draw(window);
+		Stop.draw(window);
+		Start.set_text("Start");
+		Pause.set_text("Pause");
+		Stop.set_text("Stop");
+		//window.draw(button1);
+		//Pause.draw(window);
+		//Stop.draw(window);
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -89,7 +119,7 @@ int main()
 		int start = 0;
 		int player = 1;
 		
-		while (!start) // basically loops until a key is pressed that starts game of life
+	    if (!start) // basically loops until a key is pressed that starts game of life
 		{
 			if (player == 1 && numPlayer == 2)
 			{
@@ -106,7 +136,7 @@ int main()
 			}
 			
 			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			if(Start.checkClick())
+			if(Start.checkClick(window))
 			{
 				start = 1;//implement button
 			}
@@ -114,22 +144,22 @@ int main()
 			
 
 		}
-		while (1)
-		{
 			initial_board->check_board(window);
-			Sleep(800);
-			if (Pause.checkClick())
+			//Sleep(800);
+			if (Pause.checkClick(window))
 			{
 				start = 0;
-				break;
-				//system(pause);
+				//break;
+				system("pause");
+
 			}
 			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-			if(Stop.checkClick())
+			if(Stop.checkClick(window))
 			{
+
 				window.close();
+				break;
 			}
-		}
 	}
 
 	
