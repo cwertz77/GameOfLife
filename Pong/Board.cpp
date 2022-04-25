@@ -45,7 +45,7 @@ void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 			}
 			else if (num_surrounding >= 4 && board[i][j].getFill() == true) // overpopulation
 			{
-				newboard[i][j].setFill(false);
+				newboard[i][j].setFill(false);		
 			}
 			//else
 			//{

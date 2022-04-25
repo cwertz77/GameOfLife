@@ -14,6 +14,9 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Conways Game of Life!");
 	Board* initial_board = new Board(window);
+	Button Start = new Button();
+	Button Stop = new Button();
+	Button Pause = new Button();
 
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
@@ -118,9 +121,10 @@ int main()
 				}
 			}
 			
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			if(Start.checkClick())
 			{
-				start = 1;
+				start = 1;//implement button
 			}
 
 		}
@@ -128,8 +132,14 @@ int main()
 		{
 			initial_board->check_board(window);
 			Sleep(800);
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+			if (Pause.checkClick())
+			{
+				start = 0;
+				break;
+				//system(pause);
+			}
+			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+			if(Stop.checkClick())
 			{
 				window.close();
 			}
