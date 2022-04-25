@@ -1,8 +1,8 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Board.h"
 #include "buttons.h"
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 
 using std::cout;
 using std::endl;
@@ -15,6 +15,8 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Conways Game of Life!");
 	Board* initial_board = new Board(window);
 
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
 
 //		for (int i = 0; i < 50; i++)
 //		{
@@ -101,14 +103,25 @@ int main()
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) // if left button pressed, go into find click
 			{
 				initial_board->find_click(window, player);
+
+				if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
+				{
+					if (!buffer.loadFromFile("click.wav"))
+					{
+						cout << "error loading file" << endl;
+					}
+					else {
+						sound.setBuffer(buffer);
+						sound.play();
+						//sound.pause();
+					}
+				}
 			}
 			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
 				start = 1;
 			}
-
-			
 
 		}
 		while (1)
@@ -122,6 +135,7 @@ int main()
 			}
 		}
 	}
+	
 
 	
 
