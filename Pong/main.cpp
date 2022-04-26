@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-=======
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
->>>>>>> e1d5ea8eaa04fd0589cd8e6b205424bb6c35fd24
 #include "Board.h"
 #include "buttons.h"
 
@@ -43,11 +41,11 @@ int main()
     Button Start = Button(&texture, &texture1, sf::Vector2f(500, 900));
 	Button Pause = Button(&texture, &texture1, sf::Vector2f(500, 1100));
 	Button Stop = Button(&texture, &texture1, sf::Vector2f(500, 1300));
-=======
+
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
 
->>>>>>> e1d5ea8eaa04fd0589cd8e6b205424bb6c35fd24
+
 //		for (int i = 0; i < 50; i++)
 //		{
 //			for (int j = 0; j < 40; j++)

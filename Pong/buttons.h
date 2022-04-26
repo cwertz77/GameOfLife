@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 
 
-<<<<<<< HEAD
 // buttons
 //
 using sf::Mouse;
@@ -14,14 +13,13 @@ public:
     Button();
     Button::Button(sf::Texture *actual_image, sf::Texture *clicked, sf::Vector2f location);
     bool checkClick(sf::RenderWindow& window);
-=======
+
 
 class Button : public sf::Sprite
 {
 public:
     Button(sf::Sprite* Nactual_image, sf::Sprite* Clicked, sf::Vector2f location);
     void checkClick(sf::Vector2f &Mouse);
->>>>>>> e1d5ea8eaa04fd0589cd8e6b205424bb6c35fd24
     void set_text(std::string words);
     void set_positionText(sf::Vector2f location);
     void set_SizeText(int size);
