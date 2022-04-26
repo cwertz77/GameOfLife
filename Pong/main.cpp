@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-=======
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
->>>>>>> e1d5ea8eaa04fd0589cd8e6b205424bb6c35fd24
 #include "Board.h"
-#include "buttons.h"
+//#include "buttons.h"
 
 using std::cout;
 using std::endl;
@@ -15,20 +13,18 @@ using std::cin;
 // SFML-2.5.1-windows-vc14-32-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 1500), "Conways Game of Life!");
+	sf::RenderWindow window(sf::VideoMode(1000, 900), "Conways Game of Life!");
 	Board* initial_board = new Board(window);
 
-<<<<<<< HEAD
-
-	sf::Texture texture;
-	sf::Texture texture1;
-	/*texture.loadFromFile("b1.png");
-	texture1.loadFromFile("b2.png");*/
-	if (!texture.loadFromFile("b1.png"))
+	/*sf::Texture texture;
+	sf::Texture texture1;*/
+	//texture.loadFromFile("b1.png");
+	//texture1.loadFromFile("b3.png");
+	/*if (false)
 	{
 		return -1;
 	}
-	if (!texture1.loadFromFile("b3.png"))
+	if (false)
 	{
 		return -1;
 	}
@@ -38,16 +34,20 @@ int main()
 	button1.setTexture(texture);
 	button1.setTexture(texture1);
 
-	button1.setScale(.2, .2);
+	button1.setScale(.2, .2);*/
 
-    Button Start = Button(&texture, &texture1, sf::Vector2f(500, 900));
+   /* Button Start = Button(&texture, &texture1, sf::Vector2f(500, 900));
 	Button Pause = Button(&texture, &texture1, sf::Vector2f(500, 1100));
-	Button Stop = Button(&texture, &texture1, sf::Vector2f(500, 1300));
-=======
-	sf::SoundBuffer buffer;
-	sf::Sound sound;
+	Button Stop = Button(&texture, &texture1, sf::Vector2f(500, 1300));*/
 
->>>>>>> e1d5ea8eaa04fd0589cd8e6b205424bb6c35fd24
+	/*sf::SoundBuffer buffer;
+	if (!buffer.loadFromFile("click.wav"))
+	{
+		cout << "error loading file" << endl;
+	}
+	sf::Sound sound;
+	sound.setBuffer(buffer);*/
+
 //		for (int i = 0; i < 50; i++)
 //		{
 //			for (int j = 0; j < 40; j++)
@@ -77,7 +77,9 @@ int main()
 			cout << "----------1 Player: -------------" << endl;
 			cout << "1. Enter configureation of tiles" << endl << "2. Press play and enjoy !" << endl;
 			cout << "----------2 Players: -------------" << endl;
-			cout << "1. Player 1 enter configureation of tiles" << endl << "2. Press 'N' key for next player" << endl << "3. Player 2 to enter configuration of tiles" << endl << "4. Press play and enjoy !" << endl;
+			cout << "1. Player 1 enter configureation of tiles" << endl << "2. Press 'N' key for next player" << endl << "3. Player 2 enter configuration of tiles" << endl  
+				<< "  * Player 2 may not fill a tile already filled by player 1" << endl << "4. Press play and enjoy !" << endl;
+
 			cout << endl << "--------------------RULES--------------------" << endl;
 			cout << "For a space that is filled/populated: " << endl;
 			cout << "- Each cell with one or no neighbors dies, as if by solitude." << endl;
@@ -101,33 +103,38 @@ int main()
 			if (numPlayer == 2)
 			{
 				cout << "Player 1 enters tiles first" << endl;
-				cout << "Press N for next player for player 2 to enter tiles" << endl;
+				cout << "Press 'N' for next player for player 2 to enter tiles" << endl;
 			}
 			/*if (numPlayer != 0)
 				ready = true;*/
+
+			cout << endl << "*******Controls********" << endl;
+			cout << "'S' to Start" << endl << "'P' to Pause" << endl << "   * When game is paused player/players may fill more tiles as desired" << endl << "'X' to Exit" << endl;
 		}
 	}
 
+	int player = 1;
+	int start = 0;
 	while (window.isOpen())
 	{
-		Start.draw(window);
-		//
-		Pause.draw(window);
-		Stop.draw(window);
-		Start.set_text("Start");
-		Pause.set_text("Pause");
-		Stop.set_text("Stop");
+		//Start.draw(window);
+		//Pause.draw(window);
+		//Stop.draw(window);
+		//Start.set_text("Start");
+		/*Pause.set_text("Pause");
+		Stop.set_text("Stop");*/
 		//window.draw(button1);
 		//Pause.draw(window);
 		//Stop.draw(window);
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		int start = 0;
-		int player = 1;
+		
+		
 		
 	    if (!start) // basically loops until a key is pressed that starts game of life
 		{
@@ -146,58 +153,48 @@ int main()
 
 				if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
 				{
-					if (!buffer.loadFromFile("click.wav"))
+					/*if (!buffer.loadFromFile("click.wav"))
 					{
 						cout << "error loading file" << endl;
 					}
 					else {
-						sound.setBuffer(buffer);
-						sound.play();
+						sound.setBuffer(buffer);*/
+					//sound.play();
 						//sound.pause();
-					}
+					//}
 				}
 			}
 			
-			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			if(Start.checkClick(window))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			//if(Start.checkClick(window))
 			{
 				start = 1;//implement button
 			}
 
 		}
+
+		if (start) {
 			initial_board->check_board(window);
-			//Sleep(800);
-			if (Pause.checkClick(window))
+			Sleep(800);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+				//if (Pause.checkClick(window))
 			{
 				start = 0;
+				player = 1;
 				//break;
-				system("pause");
+				//system("pause");
 
 			}
-			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-			if(Stop.checkClick(window))
-			{
+		}
 
-				window.close();
-				break;
-			}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+			//if(Stop.checkClick(window))
+		{
+
+			window.close();
+			break;
+		}
 	}
-	
-
-	
-
-	// fill tile?
-		//pTile.setFill(localPosition)
-	//}
-
-
-
-
-	//	window.clear();
-	//	window.draw(shape);
-	//	window.display();
-	//}
-
 
 	return 0;
 

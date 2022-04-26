@@ -8,7 +8,7 @@ class Player : public Tile
 {
 public:
 	using Tile::Tile;
-	Player(int newPlayer = 1);
+	Player(int newPlayer = 0);
 	void setFill(bool newFill);
 
 	void setPlayer(int newPlayer);
@@ -16,5 +16,5 @@ public:
 	int getPlayer();
 
 private:
-	int player;
+	int player=0;
 };

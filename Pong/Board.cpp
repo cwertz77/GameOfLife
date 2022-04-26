@@ -33,6 +33,7 @@ void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 				if (board[i][j].getFill() == true)
 				{
 					newboard[i][j].setFill(false); // the current tile dies on the next board
+					newboard[i][j].setPlayer(0);
 				}
 			}
 			else if (num_surrounding == 3 && board[i][j].getFill() == false) // there are 3 surrounding; new cell can grow
@@ -45,7 +46,8 @@ void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 			}
 			else if (num_surrounding >= 4 && board[i][j].getFill() == true) // overpopulation
 			{
-				newboard[i][j].setFill(false);		
+				newboard[i][j].setFill(false);	
+				newboard[i][j].setPlayer(0);
 			}
 			//else
 			//{
@@ -153,7 +155,7 @@ void Board::find_click(sf::RenderWindow& window, int player)
 	{
 		for (int j = 0; j < 40; j++)
 		{
-			if (localPosition.x >= i * 20 && localPosition.x <= (i * 20 + 20) && localPosition.y >= j * 20 && localPosition.y <= j * 20 + 20)
+			if (board[i][j].getPlayer() == 0 && localPosition.x >= i * 20 && localPosition.x <= (i * 20 + 20) && localPosition.y >= j * 20 && localPosition.y <= j * 20 + 20)
 			{
 				board[i][j].setPlayer(player);
 				board[i][j].setFill(1);
