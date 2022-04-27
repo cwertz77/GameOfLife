@@ -1,7 +1,14 @@
 #include "Board.h"
 #include <SFML/Graphics.hpp>
 
-// constructor for board
+/*
+* Function: Board()
+* Description: constructor for board
+* Input parameters: sf::RenderWindow &window
+* Returns:
+* Preconditions:
+* Postconditions: constructs the board window
+*/
 Board::Board(sf::RenderWindow &window)
 {
 	//sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
@@ -18,6 +25,15 @@ Board::Board(sf::RenderWindow &window)
 	window.display();
 
 }
+
+/*
+* Function: check_board()
+* Description: checks the board
+* Input parameters: sf::RenderWindow &window
+* Returns:
+* Preconditions: constructor for board needs to be built
+* Postconditions: constructs the board window
+*/
 void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 {
 	Player newboard[50][40];
@@ -49,12 +65,6 @@ void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 				newboard[i][j].setFill(false);	
 				newboard[i][j].setPlayer(0);
 			}
-			//else
-			//{
-			//	newboard[i][j] = board[i][j];
-			//}
-		
-			
 		}
 	}	
 	for (int i = 0; i < 50; i++)
@@ -67,7 +77,15 @@ void Board::check_board(/*Tile board[][40]*/sf::RenderWindow& window)
 	}
 	window.display();
 }
-// check surrounding
+
+/*
+* Function: check_surrounding()
+* Description: checks the surrounding tiles
+* Input parameters: int row, int col, int *playerFill
+* Returns: num_surrounding
+* Preconditions: constructor for board needs to be built
+* Postconditions: checks surrounding tiles
+*/
 int Board::check_surrounding(/*Tile board[][40], */int row, int col, int *playerFill)
 {
 	int num_surrounding = 0;
@@ -147,7 +165,14 @@ int Board::check_surrounding(/*Tile board[][40], */int row, int col, int *player
 	return num_surrounding;
 }
 
-// finds click location
+/*
+* Function: find_click()
+* Description: finds where the mouse clicks on the board
+* Input parameters: sf::RenderWindow& window, int player
+* Returns:
+* Preconditions: board needs to be built with tiles
+* Postconditions: finds where the player wants to select their tiles
+*/
 void Board::find_click(sf::RenderWindow& window, int player)
 {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(window);

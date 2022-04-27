@@ -1,95 +1,83 @@
 #include "buttons.h"
-Button::Button()
+
+/**
+* Function: Button()
+* Description: constuctor for button
+* Input parameters: sf::Texture& actual_image, sf::Texture& clicked, string label
+* Returns:
+* Preconditions: board needs to be built
+* Postconditions:
+*/
+Button::Button(sf::Texture& actual_image, sf::Texture& clicked, string label)
 {
-}
-Button::Button(sf::Texture* actual_image, sf::Texture* clicked, sf::Vector2f location)
-{
-    this->sprite = sf::RectangleShape(sf::Vector2f(300, 100));
     this->actual_image = actual_image;
     this->clicked = clicked;
-    this->n_texture = this->actual_image;
-    this->sprite.setTexture(actual_image);
-    this->sprite.setPosition(location);
-    //this->actual_image.setPosition(location);
-    //this->clicked.setPosition(location);
-    //*actual_image.SetPosition(*actual_image.getPosition());
-    //*clicked.SetPosition(*clicked.getPosition());
+
+    this->buttons.setTexture(actual_image);
+
+    this->text.setString(label);
+    this->text.setCharacterSize(80);
+    this->text.setColor(sf::Color::Black);
+
+    font.loadFromFile("Arial.ttx");
+    this->text.setFont(font);
 }
 
+/*
+* Function: checkClick()
+* Description: checks if button is clicked
+* Input parameters: sf::RenderWindow& window
+* Returns: true or fals
+* Preconditions: button contructor needs to be built
+* Postconditions: checks the click
+**/
 bool Button::checkClick(sf::RenderWindow& window)
 {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         sf::Vector2i position = sf::Mouse::getPosition(window);
-        if (position.x > sprite.getPosition().x && position.x < sprite.getPosition().x + sprite.getSize().x && position.y > sprite.getPosition().y && position.y < sprite.getPosition().y + sprite.getSize().y)
-            //Emma said there are built in functions
+        if (position.x > buttons.getPosition().x && position.x < buttons.getPosition().x + actual_image.getSize() .x
+            && position.y > buttons.getPosition().y && position.y < buttons.getPosition().y + actual_image.getSize().y)
         {
-            sprite.setTexture(clicked);
-            //n_texture = &clicked;
+            buttons.setTexture(clicked);
             return true;
         }
-        else
-        {
-            n_texture = actual_image;
-            return false;
-        }
+        
     }
 
+    buttons.setTexture(actual_image);
+    return false;
 
 }
 
-void Button::set_text(std::string words)
+/**
+* Function: draw()
+* Description: draws the text and sprites
+* Input parameters: sf::RenderTarget& window, sf::RenderStates states
+* Returns:
+* Preconditions: the text and sprite needs to be set
+* Postconditions: draws the text and sprite to the window
+*/
+void Button::draw(sf::RenderTarget& window, sf::RenderStates states) const
 {
-    //this->set_text(words);
-    this->text.setString(words);
-    this->set_SizeText(6);
+    states.transform *= getTransform();
+    states.texture = &actual_image;
 
-    //Sprite button1 std::cout << "start" < , endl;
-}
-
-void Button::set_positionText(sf::Vector2f location)
-{
-    float x = location.x + 3;
-    float y = location.y + 3;
-    sf::Vector2f vect;
-    vect.x = x;
-    vect.y = y;
-    this->set_positionText(vect);
-}
-
-void Button::set_SizeText(int size)
-{
-   size = 6;
-   this->set_SizeText(6);
-}
-//bool Button::getVar()
-//{
-//    return current;
-//}
-
-sf::Texture* Button::get_Sprite()
-{
-    return n_texture;
-}
-
-sf::Text* Button::get_Text()
-{
-   return &text;
-}
-
-void Button::draw(sf::RenderWindow& window)
-{
-    window.draw(sprite);
+    window.draw(buttons, states);
     window.draw(text);
+
 }
 
-//void Button::text(sf::RenderWindow& window)
-//{
-//    window.draw(text);
-//}
-
-
-//bool Button::getVar()
-//{
-//    return current;
-//}
+/**
+* Function: setPosition()
+* Description: sets postion of buttons
+* Input parameters: sf::Vector2f location
+* Returns:
+* Preconditions: the text and sprite needs to be set
+* Postconditions:
+*/
+void Button::setPosition(sf::Vector2f location)
+{
+    buttons.setPosition(location);
+    text.setPosition(location);
+}

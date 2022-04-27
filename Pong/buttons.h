@@ -1,32 +1,38 @@
+/***
+
+* Programmer: Charlotte Wertz, Janelle Kau, Analysse Palomares, Anika Khan
+
+* Class: CptS 122
+
+* Programming Assignment: Programming assignment 9
+
+* Description: This program will allow 2 players to play conways game of life.
+*
+***/
+
 #pragma once
 #include<iostream>
 
 #include <SFML/Graphics.hpp>
 
 
-// buttons
-//
+
 using sf::Mouse;
-class Button : public sf::Sprite
+using std::string;
+
+class Button : public sf::Drawable, sf::Transformable
 {
 public:
-    Button();
-    Button::Button(sf::Texture *actual_image, sf:: Texture *clicked, sf::Vector2f location);
+    Button(sf::Texture& actual_image, sf::Texture& clicked, string label);
     bool checkClick(sf::RenderWindow& window);
-    void set_text(std::string words);
-    void set_positionText(sf::Vector2f location);
-    void set_SizeText(int size);
-    //bool getVar();
-    sf::Texture* get_Sprite();
-    sf::Text* get_Text();
-    //bool loadTextures();
-    void draw(sf::RenderWindow& window);
-   // void text(sf::RenderWindow& window);
+    void setPosition(sf::Vector2f location);
+    virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;
+
 private:
-    sf::Texture* actual_image;
-    sf::Texture* clicked;
-    sf::Texture* n_texture;
-    sf::RectangleShape sprite;
+    sf::Texture actual_image;
+    sf::Texture clicked;
     sf::Text text;
+    sf::Sprite buttons;
+    sf::Font font;
     bool current;
 };

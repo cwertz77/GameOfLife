@@ -1,9 +1,20 @@
+/***
+
+* Programmer: Charlotte Wertz, Janelle Kau, Analysse Palomares, Anika Khan
+
+* Class: CptS 122
+
+* Programming Assignment: Programming assignment 9
+
+* Description: This program will allow 2 players to play conways game of life.
+*
+***/
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 #include "Board.h"
-//#include "buttons.h"
+#include "buttons.h"
 
 using std::cout;
 using std::endl;
@@ -13,57 +24,35 @@ using std::cin;
 // SFML-2.5.1-windows-vc14-32-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 900), "Conways Game of Life!");
-	Board* initial_board = new Board(window);
-
-	/*sf::Texture texture;
-	sf::Texture texture1;*/
-	//texture.loadFromFile("b1.png");
-	//texture1.loadFromFile("b3.png");
-	/*if (false)
-	{
-		return -1;
-	}
-	if (false)
-	{
-		return -1;
-	}
-	
-	sf::Sprite button1;
-	button1.setPosition(sf::Vector2f(500, 900));
-	button1.setTexture(texture);
-	button1.setTexture(texture1);
-
-	button1.setScale(.2, .2);*/
-
-   /* Button Start = Button(&texture, &texture1, sf::Vector2f(500, 900));
-	Button Pause = Button(&texture, &texture1, sf::Vector2f(500, 1100));
-	Button Stop = Button(&texture, &texture1, sf::Vector2f(500, 1300));*/
-
-	/*sf::SoundBuffer buffer;
+	sf::Sound sound;
+	sf::SoundBuffer buffer;
 	if (!buffer.loadFromFile("click.wav"))
 	{
-		cout << "error loading file" << endl;
+		return -1;
 	}
-	sf::Sound sound;
-	sound.setBuffer(buffer);*/
 
-//		for (int i = 0; i < 50; i++)
-//		{
-//			for (int j = 0; j < 40; j++)
-//			{
-//				Tile tile(sf::Vector2f(20 * i, 20 * j), sf::Vector2f(20, 20), sf::Color::White);
-//				window.draw(tile);
-//				
-//			}
-//		}
-//		window.display();
-	//window.display();
-	//shape.setFillColor(sf::Color::Green);
+	sf::Texture texture;
+	sf::Texture texture1;
+	if (!texture.loadFromFile("B1.png"))
+	{
+		return -1;
+	}
+	if (!texture1.loadFromFile("B2.png"))
+	{
+		return -1;
+	}
+
+
+   Button Start = Button(texture, texture1, "Start");
+   Button Pause = Button(texture, texture1, "Pause");
+   Button Stop = Button(texture, texture1, "Stop");
+
+   Start.setPosition(sf::Vector2f(25, 850));
+   Pause.setPosition(sf::Vector2f(350, 850));
+   Stop.setPosition(sf::Vector2f(675, 850));
 
 	int option =0;
 	int numPlayer = 0;
-	//bool ready = false;
 
 	while (numPlayer == 0)
 	{
@@ -105,27 +94,22 @@ int main()
 				cout << "Player 1 enters tiles first" << endl;
 				cout << "Press 'N' for next player for player 2 to enter tiles" << endl;
 			}
-			/*if (numPlayer != 0)
-				ready = true;*/
 
 			cout << endl << "*******Controls********" << endl;
 			cout << "'S' to Start" << endl << "'P' to Pause" << endl << "   * When game is paused player/players may fill more tiles as desired" << endl << "'X' to Exit" << endl;
 		}
 	}
 
+	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Conways Game of Life!");
+	Board* initial_board = new Board(window);
+
 	int player = 1;
 	int start = 0;
 	while (window.isOpen())
 	{
-		//Start.draw(window);
-		//Pause.draw(window);
-		//Stop.draw(window);
-		//Start.set_text("Start");
-		/*Pause.set_text("Pause");
-		Stop.set_text("Stop");*/
-		//window.draw(button1);
-		//Pause.draw(window);
-		//Stop.draw(window);
+		window.draw(Start);
+		window.draw(Pause);
+		window.draw(Stop);
 
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -153,20 +137,15 @@ int main()
 
 				if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
 				{
-					/*if (!buffer.loadFromFile("click.wav"))
-					{
-						cout << "error loading file" << endl;
-					}
-					else {
-						sound.setBuffer(buffer);*/
-					//sound.play();
-						//sound.pause();
-					//}
+
+					sound.setBuffer(buffer);
+					sound.play();
+					
 				}
 			}
 			
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			//if(Start.checkClick(window))
+			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			if(Start.checkClick(window))
 			{
 				start = 1;//implement button
 			}
@@ -176,8 +155,9 @@ int main()
 		if (start) {
 			initial_board->check_board(window);
 			Sleep(800);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-				//if (Pause.checkClick(window))
+
+			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+			if (Pause.checkClick(window))
 			{
 				start = 0;
 				player = 1;
@@ -187,8 +167,8 @@ int main()
 			}
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-			//if(Stop.checkClick(window))
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+		if(Stop.checkClick(window))
 		{
 
 			window.close();

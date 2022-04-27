@@ -1,3 +1,15 @@
+/***
+
+* Programmer: Charlotte Wertz, Janelle Kau, Analysse Palomares, Anika Khan
+
+* Class: CptS 122
+
+* Programming Assignment: Programming assignment 9
+
+* Description: This program will allow 2 players to play conways game of life.
+*
+***/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
