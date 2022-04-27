@@ -29,33 +29,6 @@ using std::cin;
 // SFML-2.5.1-windows-vc14-32-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)
 int main()
 {
-	sf::Sound sound;
-	sf::SoundBuffer buffer;
-	if (!buffer.loadFromFile("click.wav"))
-	{
-		return -1;
-	}
-
-	sf::Texture texture;
-	sf::Texture texture1;
-	if (!texture.loadFromFile("B1.png"))
-	{
-		return -1;
-	}
-	if (!texture1.loadFromFile("B2.png"))
-	{
-		return -1;
-	}
-
-
-   Button Start = Button(texture, texture1, "Start");
-   Button Pause = Button(texture, texture1, "Pause");
-   Button Stop = Button(texture, texture1, "Stop");
-
-   Start.setPosition(sf::Vector2f(25, 850));
-   Pause.setPosition(sf::Vector2f(350, 850));
-   Stop.setPosition(sf::Vector2f(675, 850));
-
 	int option =0;
 	int numPlayer = 0;
 
@@ -83,6 +56,7 @@ int main()
 			cout << "- Each cell with three neighbors becomes filled/populated." << endl;
 			cout << "	* For 2 players when a cell becomes populated it takes on the color of the morjority of the neighbors" << endl << endl;
 
+			cout << "When game is paused player/players may fill more tiles as desired" << endl;
 			cout << "Game ends when game board repeats the same patters indefinetly or all cells die" << endl;
 			cout << "	* For 2 players whoever ends up with the most amount of tiles on the board wins !" << endl;
 
@@ -91,7 +65,6 @@ int main()
 		}
 		else
 		{
-
 			cout << "Enter 1 or 2 players: ";
 			cin >> numPlayer;
 			if (numPlayer == 2)
@@ -101,12 +74,39 @@ int main()
 			}
 
 			cout << endl << "*******Controls********" << endl;
-			cout << "'S' to Start" << endl << "'P' to Pause" << endl << "   * When game is paused player/players may fill more tiles as desired" << endl << "'X' to Exit" << endl;
+			cout << "Press and Hold till button changes color" << endl;
 		}
 	}
 
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Conways Game of Life!");
 	Board* initial_board = new Board(window);
+
+	sf::Sound sound;
+	sf::SoundBuffer buffer;
+	if (!buffer.loadFromFile("click.wav"))
+	{
+		return -1;
+	}
+
+	sf::Texture texture;
+	sf::Texture texture1;
+	if (!texture.loadFromFile("B1.png"))
+	{
+		return -1;
+	}
+	if (!texture1.loadFromFile("B2.png"))
+	{
+		return -1;
+	}
+
+
+	Button Start = Button(texture, texture1, "Start");
+	Button Pause = Button(texture, texture1, "Pause");
+	Button Stop = Button(texture, texture1, "Stop");
+
+	Start.setPosition(sf::Vector2f(25, 850));
+	Pause.setPosition(sf::Vector2f(350, 850));
+	Stop.setPosition(sf::Vector2f(675, 850));
 
 	int player = 1;
 	int start = 0;
@@ -159,15 +159,13 @@ int main()
 
 		if (start) {
 			initial_board->check_board(window);
-			Sleep(800);
+			Sleep(500);
 
 			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 			if (Pause.checkClick(window))
 			{
 				start = 0;
 				player = 1;
-				//break;
-				//system("pause");
 
 			}
 		}

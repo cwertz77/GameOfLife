@@ -30,7 +30,6 @@ public:
 		// creates a border for each color
 		this->setOutlineThickness(2);
 		this->setOutlineColor(sf::Color::Black);
-	//	this->setOutlineColor(sf::Color(250, 150, 100));
 		this->setPosition(pos);
 		fill = false;
 	}

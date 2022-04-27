@@ -78,6 +78,7 @@ void Button::draw(sf::RenderTarget& window, sf::RenderStates states) const
 */
 void Button::setPosition(sf::Vector2f location)
 {
-    buttons.setPosition(location);
-    text.setPosition(location);
+   text.setOrigin(sf::Vector2f(text.getLocalBounds().width / 2, 0));
+   text.setPosition(location + sf::Vector2f(150, 0));
+   buttons.setPosition(location);
 }

@@ -24,6 +24,7 @@ class Button : public sf::Drawable, sf::Transformable
 {
 public:
     Button(sf::Texture& actual_image, sf::Texture& clicked, string label);
+
     bool checkClick(sf::RenderWindow& window);
     void setPosition(sf::Vector2f location);
     virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;

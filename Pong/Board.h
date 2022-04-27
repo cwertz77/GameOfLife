@@ -11,9 +11,10 @@
 ***/
 
 #pragma once
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <Windows.h>
-#include <SFML/Graphics.hpp>
+
 #pragma once
 #include "player.h"
 using std::string;
@@ -28,7 +29,6 @@ public:
 	void check_board(/*Tile board[][40]*/sf::RenderWindow& window);
 
 private:
-
 
 	// checks which cells on a board live or die
 	// checks the surrounding area of a single cell
