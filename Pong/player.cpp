@@ -1,10 +1,30 @@
 #include "player.h"
 
+/*************************************************************
+ * Function: Player()
+ * Date Created: 4/16/22
+ * Date Last Modified: 4/26/22
+ * Description: constructor for the player class and inherits from the tile class
+ * Input parameters:int newPlayer
+ * Returns:
+ * Preconditions:
+ * Postconditions:
+ *************************************************************/
 Player::Player(int newPlayer) : Tile()
 {
 	player = newPlayer;
 }
 
+/*************************************************************
+ * Function: setFill
+ * Date Created: 4/16/22
+ * Date Last Modified: 4/26/22
+ * Description: fills the tiles with color based on the player number and if the tile is populated or underpopulated
+ * Input parameters: bool newFill
+ * Returns:
+ * Preconditions:
+ * Postconditions:
+ *************************************************************/
 void Player::setFill(bool newFill)
 {
 	fill = newFill;
@@ -32,12 +52,31 @@ void Player::setFill(bool newFill)
 	}
 }
 
+/*************************************************************
+ * Function: setplayer()
+ * Date Created: 1/16/22
+ * Date Last Modified: 4/26/22
+ * Description: setter, sets the variable player to new player
+ * Input parameters:int newPlayer
+ * Returns:
+ * Preconditions:
+ * Postconditions:
+ *************************************************************/
 void Player::setPlayer(int newPlayer)
 {
 	this->player = newPlayer;
 }
 
-
+/*************************************************************
+ * Function: getPlayer()
+ * Date Created: 4/16/22
+ * Date Last Modified: 4/26/22
+ * Description: getter, gets the variable player
+ * Input parameters:
+ * Returns:
+ * Preconditions:
+ * Postconditions:
+ *************************************************************/
 int Player::getPlayer()
 {
 	return this->player;

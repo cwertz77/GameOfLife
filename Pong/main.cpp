@@ -1,14 +1,18 @@
-/***
-
-* Programmer: Charlotte Wertz, Janelle Kau, Analysse Palomares, Anika Khan
-
-* Class: CptS 122
-
-* Programming Assignment: Programming assignment 9
-
-* Description: This program will allow 2 players to play conways game of life.
-*
-***/
+/***********************************************************************************************************
+ * Programmers: Analysse Palomares, Anika Raisa Khan, Charlotte Wertz, Janelle Kau	                       *
+ * Class: CptS 122																						   *
+ * Programming Assignment: 9												                               *
+ * Date: 4/27/22                                                                                           *
+ * Description: We have built John Conway's Game of Life for our project. At the begining of the program
+				gives the users two options-show the rules of the game or play the game. If the user choose
+				the first option, they can see the rules of the game. If user choose the second option, then
+				they can choose the number of players. One or two person can play the game. Player/ Players
+				can click on the tiles they want. After players are done choosing the tiles, they can hit
+				the start button for playing. Based on the rule that the tile is populated or underpopulated
+				the program will decide if the tile is dead or alive and update the new board. The player
+				can also pause the game or exit the game at any point they want. Based on how many tiles
+				are alive, one player will win the game.
+ **********************************************************************************************************/
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
