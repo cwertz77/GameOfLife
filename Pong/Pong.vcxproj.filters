@@ -45,12 +45,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="b1.png">
-      <Filter>ResourceFiles</Filter>
-    </Image>
-    <Image Include="b3.png">
-      <Filter>ResourceFiles</Filter>
-    </Image>
-  </ItemGroup>
 </Project>

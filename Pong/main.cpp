@@ -19,6 +19,7 @@
 
 #include "Board.h"
 #include "buttons.h"
+#include "fstream";
 
 using std::cout;
 using std::endl;

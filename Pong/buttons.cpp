@@ -19,7 +19,7 @@ Button::Button(sf::Texture& actual_image, sf::Texture& clicked, string label)
     this->text.setCharacterSize(80);
     this->text.setColor(sf::Color::Black);
 
-    font.loadFromFile("Arial.ttx");
+    font.loadFromFile("Arial.ttf");
     this->text.setFont(font);
 }
 
